@@ -55,241 +55,276 @@ typedef struct {
 // The fprintf macros for signed integers are:
 #define PRId8       "d"
 #define PRIi8       "i"
-#define PRIdLEAST8  "d"
-#define PRIiLEAST8  "i"
-#define PRIdFAST8   "d"
-#define PRIiFAST8   "i"
+#define PRIdLEAST8  PRId8
+#define PRIiLEAST8  PRIi8
+#define PRIdFAST8   PRIdFAST8
+#define PRIiFAST8   PRIiFAST8
 
 #define PRId16       "hd"
 #define PRIi16       "hi"
-#define PRIdLEAST16  "hd"
-#define PRIiLEAST16  "hi"
-#define PRIdFAST16   "hd"
-#define PRIiFAST16   "hi"
+#define PRIdLEAST16  PRId16
+#define PRIiLEAST16  PRIi16
+#define PRIdFAST16   PRId16
+#define PRIiFAST16   PRIi16
 
-#if defined(_MSC_VER) && _MSC_VER<=1200	// VC6
-#define PRId32       "d"
-#define PRIi32       "i"
-#define PRIdLEAST32  "d"
-#define PRIiLEAST32  "i"
-#define PRIdFAST32   "d"
-#define PRIiFAST32   "i"
-#else
+#if defined(_MSC_VER) && _MSC_VER>1200	// > VC6
 #define PRId32       "I32d"
 #define PRIi32       "I32i"
-#define PRIdLEAST32  "I32d"
-#define PRIiLEAST32  "I32i"
-#define PRIdFAST32   "I32d"
-#define PRIiFAST32   "I32i"
+#elif INT_MAX >= INT32_MAX
+#define PRId32       "d"
+#define PRIi32       "i"
+#else
+#define PRId32       "ld"
+#define PRIi32       "li"
 #endif
+#define PRIdLEAST32  PRId32
+#define PRIiLEAST32  PRIi32
+#define PRIdFAST32   PRId32
+#define PRIiFAST32   PRIi32
 
+#if AUTO_STDINT_INTMAX_BIT >= 64
+#if defined(_MSC_VER) && _MSC_VER>1200	// > VC6
 #define PRId64       "I64d"
 #define PRIi64       "I64i"
-#define PRIdLEAST64  "I64d"
-#define PRIiLEAST64  "I64i"
-#define PRIdFAST64   "I64d"
-#define PRIiFAST64   "I64i"
+#elif LONG_MAX >= INT64_MAX
+#define PRId64       "ld"
+#define PRIi64       "li"
+#else
+#define PRId64       "lld"
+#define PRIi64       "lli"
+#endif
+#define PRIdLEAST64  PRId64
+#define PRIiLEAST64  PRIiLEAST64
+#define PRIdFAST64   PRId64
+#define PRIiFAST64   PRIiLEAST64
+#endif
 
-#define PRIdMAX     "I64d"
-#define PRIiMAX     "I64i"
+#if AUTO_STDINT_INTMAX_BIT >= 64
+#define PRIdMAX     PRId64
+#define PRIiMAX     PRIi64
+#else
+#define PRIdMAX     PRId32
+#define PRIiMAX     PRIi32
+#endif
 
+#if defined(_MSC_VER) && _MSC_VER>1200	// > VC6
 #define PRIdPTR     "Id"
 #define PRIiPTR     "Ii"
+#else
+#define PRIdPTR     "d"
+#define PRIiPTR     "i"
+#endif
 
 // The fprintf macros for unsigned integers are:
 #define PRIo8       "o"
 #define PRIu8       "u"
 #define PRIx8       "x"
 #define PRIX8       "X"
-#define PRIoLEAST8  "o"
-#define PRIuLEAST8  "u"
-#define PRIxLEAST8  "x"
-#define PRIXLEAST8  "X"
-#define PRIoFAST8   "o"
-#define PRIuFAST8   "u"
-#define PRIxFAST8   "x"
-#define PRIXFAST8   "X"
+#define PRIoLEAST8  PRIo8
+#define PRIuLEAST8  PRIu8
+#define PRIxLEAST8  PRIx8
+#define PRIXLEAST8  PRIX8
+#define PRIoFAST8   PRIo8
+#define PRIuFAST8   PRIu8
+#define PRIxFAST8   PRIx8
+#define PRIXFAST8   PRIX8
 
 #define PRIo16       "ho"
 #define PRIu16       "hu"
 #define PRIx16       "hx"
 #define PRIX16       "hX"
-#define PRIoLEAST16  "ho"
-#define PRIuLEAST16  "hu"
-#define PRIxLEAST16  "hx"
-#define PRIXLEAST16  "hX"
-#define PRIoFAST16   "ho"
-#define PRIuFAST16   "hu"
-#define PRIxFAST16   "hx"
-#define PRIXFAST16   "hX"
+#define PRIoLEAST16  PRIo16
+#define PRIuLEAST16  PRIu16
+#define PRIxLEAST16  PRIx16
+#define PRIXLEAST16  PRIX16
+#define PRIoFAST16   PRIo16
+#define PRIuFAST16   PRIu16
+#define PRIxFAST16   PRIx16
+#define PRIXFAST16   PRIX16
 
-#if defined(_MSC_VER) && _MSC_VER<=1200	// VC6
-#define PRIo32       "o"
-#define PRIu32       "u"
-#define PRIx32       "x"
-#define PRIX32       "X"
-#define PRIoLEAST32  "o"
-#define PRIuLEAST32  "u"
-#define PRIxLEAST32  "x"
-#define PRIXLEAST32  "X"
-#define PRIoFAST32   "o"
-#define PRIuFAST32   "u"
-#define PRIxFAST32   "x"
-#define PRIXFAST32   "X"
-#else
+#if defined(_MSC_VER) && _MSC_VER>1200	// > VC6
 #define PRIo32       "I32o"
 #define PRIu32       "I32u"
 #define PRIx32       "I32x"
 #define PRIX32       "I32X"
-#define PRIoLEAST32  "I32o"
-#define PRIuLEAST32  "I32u"
-#define PRIxLEAST32  "I32x"
-#define PRIXLEAST32  "I32X"
-#define PRIoFAST32   "I32o"
-#define PRIuFAST32   "I32u"
-#define PRIxFAST32   "I32x"
-#define PRIXFAST32   "I32X"
+#elif INT_MAX >= INT32_MAX
+#define PRIo32       "o"
+#define PRIu32       "u"
+#define PRIx32       "x"
+#define PRIX32       "X"
+#else
+#define PRIo32       "lo"
+#define PRIu32       "lu"
+#define PRIx32       "lx"
+#define PRIX32       "lX"
 #endif
+#define PRIoLEAST32  PRIo32
+#define PRIuLEAST32  PRIu32
+#define PRIxLEAST32  PRIx32
+#define PRIXLEAST32  PRIX32
+#define PRIoFAST32   PRIo32
+#define PRIuFAST32   PRIu32
+#define PRIxFAST32   PRIx32
+#define PRIXFAST32   PRIX32
 
+#if AUTO_STDINT_INTMAX_BIT >= 64
+#if defined(_MSC_VER) && _MSC_VER>1200	// > VC6
 #define PRIo64       "I64o"
 #define PRIu64       "I64u"
 #define PRIx64       "I64x"
 #define PRIX64       "I64X"
-#define PRIoLEAST64  "I64o"
-#define PRIuLEAST64  "I64u"
-#define PRIxLEAST64  "I64x"
-#define PRIXLEAST64  "I64X"
-#define PRIoFAST64   "I64o"
-#define PRIuFAST64   "I64u"
-#define PRIxFAST64   "I64x"
-#define PRIXFAST64   "I64X"
+#elif LONG_MAX >= INT64_MAX
+#define PRIo64       "lo"
+#define PRIu64       "lu"
+#define PRIx64       "lx"
+#define PRIX64       "lX"
+#else
+#define PRIo64       "llo"
+#define PRIu64       "llu"
+#define PRIx64       "llx"
+#define PRIX64       "llX"
+#endif
+#define PRIoLEAST64  PRIo64
+#define PRIuLEAST64  PRIu64
+#define PRIxLEAST64  PRIx64
+#define PRIXLEAST64  PRIX64
+#define PRIoFAST64   PRIo64
+#define PRIuFAST64   PRIu64
+#define PRIxFAST64   PRIx64
+#define PRIXFAST64   PRIX64
+#endif
 
-#define PRIoMAX     "I64o"
-#define PRIuMAX     "I64u"
-#define PRIxMAX     "I64x"
-#define PRIXMAX     "I64X"
+#if AUTO_STDINT_INTMAX_BIT >= 64
+#define PRIoMAX     PRIo64
+#define PRIuMAX     PRIu64
+#define PRIxMAX     PRIx64
+#define PRIXMAX     PRIX64
+#else
+#define PRIoMAX     PRIo32
+#define PRIuMAX     PRIu32
+#define PRIxMAX     PRIx32
+#define PRIXMAX     PRIX32
+#endif
 
+#if defined(_MSC_VER) && _MSC_VER>1200	// > VC6
 #define PRIoPTR     "Io"
 #define PRIuPTR     "Iu"
 #define PRIxPTR     "Ix"
 #define PRIXPTR     "IX"
+#else
+#define PRIoPTR     "o"
+#define PRIuPTR     "u"
+#define PRIxPTR     "x"
+#define PRIXPTR     "X"
+#endif
 
 // The fscanf macros for signed integers are:
-#define SCNd8       "d"
-#define SCNi8       "i"
-#define SCNdLEAST8  "d"
-#define SCNiLEAST8  "i"
-#define SCNdFAST8   "d"
-#define SCNiFAST8   "i"
+#define SCNd8       PRId8
+#define SCNi8       PRIi8
+#define SCNdLEAST8  PRIdLEAST8
+#define SCNiLEAST8  PRIiLEAST8
+#define SCNdFAST8   PRIdFAST8
+#define SCNiFAST8   PRIiFAST8
 
-#define SCNd16       "hd"
-#define SCNi16       "hi"
-#define SCNdLEAST16  "hd"
-#define SCNiLEAST16  "hi"
-#define SCNdFAST16   "hd"
-#define SCNiFAST16   "hi"
+#define SCNd16       PRId16
+#define SCNi16       PRIi16
+#define SCNdLEAST16  PRIdLEAST16
+#define SCNiLEAST16  PRIiLEAST16
+#define SCNdFAST16   PRIdFAST16
+#define SCNiFAST16   PRIiFAST16
 
-#define SCNd32       "ld"
-#define SCNi32       "li"
-#define SCNdLEAST32  "ld"
-#define SCNiLEAST32  "li"
-#define SCNdFAST32   "ld"
-#define SCNiFAST32   "li"
+#define SCNd32       PRId32
+#define SCNi32       PRIi32
+#define SCNdLEAST32  PRIdLEAST32
+#define SCNiLEAST32  PRIiLEAST32
+#define SCNdFAST32   PRIdFAST32
+#define SCNiFAST32   PRIiFAST32
 
-#define SCNd64       "I64d"
-#define SCNi64       "I64i"
-#define SCNdLEAST64  "I64d"
-#define SCNiLEAST64  "I64i"
-#define SCNdFAST64   "I64d"
-#define SCNiFAST64   "I64i"
+#define SCNd64       PRId64
+#define SCNi64       PRIi64
+#define SCNdLEAST64  PRIdLEAST64
+#define SCNiLEAST64  PRIiLEAST64
+#define SCNdFAST64   PRIdFAST64
+#define SCNiFAST64   PRIiFAST64
 
-#define SCNdMAX     "I64d"
-#define SCNiMAX     "I64i"
+#define SCNdMAX     PRIdMAX
+#define SCNiMAX     PRIiMAX
 
-#ifdef _WIN64 // [
-#  define SCNdPTR     "I64d"
-#  define SCNiPTR     "I64i"
-#else  // _WIN64 ][
-#  define SCNdPTR     "ld"
-#  define SCNiPTR     "li"
-#endif  // _WIN64 ]
+#define SCNdPTR     PRIdPTR
+#define SCNiPTR     PRIiPTR
 
 // The fscanf macros for unsigned integers are:
-#define SCNo8       "o"
-#define SCNu8       "u"
-#define SCNx8       "x"
-#define SCNX8       "X"
-#define SCNoLEAST8  "o"
-#define SCNuLEAST8  "u"
-#define SCNxLEAST8  "x"
-#define SCNXLEAST8  "X"
-#define SCNoFAST8   "o"
-#define SCNuFAST8   "u"
-#define SCNxFAST8   "x"
-#define SCNXFAST8   "X"
+#define SCNo8       PRIo8
+#define SCNu8       PRIu8
+#define SCNx8       PRIx8
+#define SCNX8       PRIX8
+#define SCNoLEAST8  PRIoLEAST8
+#define SCNuLEAST8  PRIuLEAST8
+#define SCNxLEAST8  PRIxLEAST8
+#define SCNXLEAST8  PRIXLEAST8
+#define SCNoFAST8   PRIoFAST8
+#define SCNuFAST8   PRIuFAST8
+#define SCNxFAST8   PRIxFAST8
+#define SCNXFAST8   PRIXFAST8
 
-#define SCNo16       "ho"
-#define SCNu16       "hu"
-#define SCNx16       "hx"
-#define SCNX16       "hX"
-#define SCNoLEAST16  "ho"
-#define SCNuLEAST16  "hu"
-#define SCNxLEAST16  "hx"
-#define SCNXLEAST16  "hX"
-#define SCNoFAST16   "ho"
-#define SCNuFAST16   "hu"
-#define SCNxFAST16   "hx"
-#define SCNXFAST16   "hX"
+#define SCNo16       PRIo16
+#define SCNu16       PRIu16
+#define SCNx16       PRIx16
+#define SCNX16       PRIX16
+#define SCNoLEAST16  PRIoLEAST16
+#define SCNuLEAST16  PRIuLEAST16
+#define SCNxLEAST16  PRIxLEAST16
+#define SCNXLEAST16  PRIXLEAST16
+#define SCNoFAST16   PRIoFAST16
+#define SCNuFAST16   PRIuFAST16
+#define SCNxFAST16   PRIxFAST16
+#define SCNXFAST16   PRIXFAST16
 
-#define SCNo32       "lo"
-#define SCNu32       "lu"
-#define SCNx32       "lx"
-#define SCNX32       "lX"
-#define SCNoLEAST32  "lo"
-#define SCNuLEAST32  "lu"
-#define SCNxLEAST32  "lx"
-#define SCNXLEAST32  "lX"
-#define SCNoFAST32   "lo"
-#define SCNuFAST32   "lu"
-#define SCNxFAST32   "lx"
-#define SCNXFAST32   "lX"
+#define SCNo32       PRIo32
+#define SCNu32       PRIu32
+#define SCNx32       PRIx32
+#define SCNX32       PRIX32
+#define SCNoLEAST32  PRIoLEAST32
+#define SCNuLEAST32  PRIuLEAST32
+#define SCNxLEAST32  PRIxLEAST32
+#define SCNXLEAST32  PRIXLEAST32
+#define SCNoFAST32   PRIoFAST32
+#define SCNuFAST32   PRIuFAST32
+#define SCNxFAST32   PRIxFAST32
+#define SCNXFAST32   PRIXFAST32
 
-#define SCNo64       "I64o"
-#define SCNu64       "I64u"
-#define SCNx64       "I64x"
-#define SCNX64       "I64X"
-#define SCNoLEAST64  "I64o"
-#define SCNuLEAST64  "I64u"
-#define SCNxLEAST64  "I64x"
-#define SCNXLEAST64  "I64X"
-#define SCNoFAST64   "I64o"
-#define SCNuFAST64   "I64u"
-#define SCNxFAST64   "I64x"
-#define SCNXFAST64   "I64X"
+#define SCNo64       PRIo64
+#define SCNu64       PRIu64
+#define SCNx64       PRIx64
+#define SCNX64       PRIX64
+#define SCNoLEAST64  PRIoLEAST64
+#define SCNuLEAST64  PRIuLEAST64
+#define SCNxLEAST64  PRIxLEAST64
+#define SCNXLEAST64  PRIXLEAST64
+#define SCNoFAST64   PRIoFAST64
+#define SCNuFAST64   PRIuFAST64
+#define SCNxFAST64   PRIxFAST64
+#define SCNXFAST64   PRIXFAST64
 
-#define SCNoMAX     "I64o"
-#define SCNuMAX     "I64u"
-#define SCNxMAX     "I64x"
-#define SCNXMAX     "I64X"
+#define SCNoMAX     PRIoMAX
+#define SCNuMAX     PRIuMAX
+#define SCNxMAX     PRIxMAX
+#define SCNXMAX     PRIXMAX
 
-#ifdef _WIN64 // [
-#  define SCNoPTR     "I64o"
-#  define SCNuPTR     "I64u"
-#  define SCNxPTR     "I64x"
-#  define SCNXPTR     "I64X"
-#else  // _WIN64 ][
-#  define SCNoPTR     "lo"
-#  define SCNuPTR     "lu"
-#  define SCNxPTR     "lx"
-#  define SCNXPTR     "lX"
-#endif  // _WIN64 ]
-
+#define SCNoPTR     PRIoPTR
+#define SCNuPTR     PRIuPTR
+#define SCNxPTR     PRIxPTR
+#define SCNXPTR     PRIXPTR
 #endif // __STDC_FORMAT_MACROS ]
 
 // 7.8.2 Functions for greatest-width integer types
 
 // 7.8.2.1 The imaxabs function
+#if defined(_MSC_VER) && _MSC_VER>1200	// > VC6
 #define imaxabs _abs64
+#else
+#define imaxabs labs
+#endif
 
 // 7.8.2.2 The imaxdiv function
 
@@ -319,12 +354,22 @@ imaxdiv_t __cdecl imaxdiv(intmax_t numer, intmax_t denom)
 #endif  // #ifdef _MSC_VER
 
 // 7.8.2.3 The strtoimax and strtoumax functions
+#if defined(_MSC_VER) && _MSC_VER>1200	// > VC6
 #define strtoimax _strtoi64
 #define strtoumax _strtoui64
+#else
+#define strtoimax strtol
+#define strtoumax strtoul
+#endif
 
 // 7.8.2.4 The wcstoimax and wcstoumax functions
+#if defined(_MSC_VER) && _MSC_VER>1200	// > VC6
 #define wcstoimax _wcstoi64
 #define wcstoumax _wcstoui64
+#else
+#define wcstoimax wcstol
+#define wcstoumax wcstoul
+#endif
 
 
 #endif // _MSC_INTTYPES_H_ ]
