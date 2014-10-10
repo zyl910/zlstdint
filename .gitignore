@@ -36,6 +36,7 @@
 *.vcproj.*.user
 *.vcxproj.*.user
 *.vcxproj.user
+*.local
 
 Debug/
 Release/
