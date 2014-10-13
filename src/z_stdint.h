@@ -56,8 +56,8 @@
  * 
  * Use doxywizard to open *.doxygen file (使用doxywizard打开 *.doxygen).
  * 
- * * c99int_doc.doxygen: Generates documentation from interface files (生成接口的文档) .
- * * c99int_docfull.doxygen: Generates documentation from interface & implement and example files (生成接口、实现、示例等内容的详细文档).
+ * * zlstdint_doc.doxygen: Generates documentation from interface files (生成接口的文档) .
+ * * zlstdint_docfull.doxygen: Generates documentation from interface & implement and example files (生成接口、实现、示例等内容的详细文档).
  * 
  * You may need change INCLUDE_PATH in *.doxyfile with the actual location (您可能需要在 *.doxygen 中调整INCLUDE_PATH为实际路径).
  * 
