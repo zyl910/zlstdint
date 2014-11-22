@@ -12,8 +12,8 @@
 /// @since	@ref GROUP_ZLSTDINT 1.0
 ///
 
-#ifndef __AUTO_INTTYPES_H_INCLUDED
-#define __AUTO_INTTYPES_H_INCLUDED
+#ifndef INCLUDED_Z_INTTYP_H
+#define INCLUDED_Z_INTTYP_H
 
 // __AUTO_INTTYPES_H_USESYS: 编译器是否提供了<inttypes.h>
 #undef __AUTO_INTTYPES_H_USESYS
@@ -374,7 +374,7 @@ imaxdiv_t __cdecl imaxdiv(intmax_t numer, intmax_t denom)
 
 #endif // #ifdef __AUTO_INTTYPES_H_USESYS
 
-#endif // #ifndef __AUTO_INTTYPES_H_INCLUDED
+#endif // #ifndef INCLUDED_Z_INTTYP_H
 
 
 /// @}

@@ -88,8 +88,8 @@
 ///
 
 
-#ifndef __AUTO_STDINT_H_INCLUDED
-#define __AUTO_STDINT_H_INCLUDED
+#ifndef INCLUDED_Z_STDINT_H
+#define INCLUDED_Z_STDINT_H
 
 // __AUTO_STDINT_H_USESYS: 编译器是否提供了<stdint.h>
 #undef __AUTO_STDINT_H_USESYS
@@ -427,7 +427,7 @@ typedef uint32_t  uintmax_t;
 
 #endif // #ifdef __AUTO_STDINT_H_USESYS
 
-#endif // #ifndef __AUTO_STDINT_H_INCLUDED
+#endif // #ifndef INCLUDED_Z_STDINT_H
 
 
 /// @}
