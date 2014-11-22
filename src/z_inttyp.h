@@ -1,16 +1,16 @@
-/** @addtogroup GROUP_ZYLLIBC	zyllibc
- * @{
- */
+/// @addtogroup GROUP_ZYLLIBC	zyllibc
+/// @{
+///
 
-/** @addtogroup GROUP_ZLSTDINT	zlstdint
- * @{
- */
+/// @addtogroup GROUP_ZLSTDINT	zlstdint
+/// @{
+///
 
-/**
- * @file	z_inttyp.h
- * @brief	Auto include C99 inttypes.h (自动引用C99标准的inttypes.h).
- * @since	@ref GROUP_ZLSTDINT 1.0
- */
+///
+/// @file	z_inttyp.h
+/// @brief	Auto include C99 inttypes.h (自动引用C99标准的inttypes.h).
+/// @since	@ref GROUP_ZLSTDINT 1.0
+///
 
 #ifndef __AUTO_INTTYPES_H_INCLUDED
 #define __AUTO_INTTYPES_H_INCLUDED
@@ -22,9 +22,7 @@
 #elif defined(_MSC_VER)	// MSVC. VC2012仍不支持.
 #elif defined(__BORLANDC__)	// BCB. BCB6仍不支持.
 #else
-	/**
-	 * Is the compiler exist `<inttypes.h>` (编译器是否提供了`<inttypes.h>`) ?
-	 */
+	/// Is the compiler exist `<inttypes.h>` (编译器是否提供了`<inttypes.h>`) ?
 	#define __AUTO_INTTYPES_H_USESYS	// 假设其他编译器支持C99.
 #endif	// __AUTO_INTTYPES_H_USESYS
 
@@ -379,5 +377,5 @@ imaxdiv_t __cdecl imaxdiv(intmax_t numer, intmax_t denom)
 #endif // #ifndef __AUTO_INTTYPES_H_INCLUDED
 
 
-/** @} */	// @addtogroup GROUP_ZLSTDINT
-/** @} */	// @addtogroup GROUP_ZYLLIBC
+/// @}
+/// @}
