@@ -96,6 +96,7 @@
 ///
 /// * Auto support `stdint.h` (使各种编译器兼容 `stdint.h`).
 /// * Z_STDINT_H_USESYS: Is use compiler's `stdint.h` (是否使用的是编译器提供的 `stdint.h`) .
+/// * Z_STDINT_INTMAX_BIT: intmax_t bits (intmax_t 类型的位数) .
 ///
 /// References (参考文献) :
 ///
@@ -126,8 +127,8 @@
 // 使用编译器提供的<stdint.h>
 #include <stdint.h>
 
-/// intmax_t bits.
-#define AUTO_STDINT_INTMAX_BIT	64
+/// intmax_t bits (intmax_t 类型的位数).
+#define Z_STDINT_INTMAX_BIT	64
 
 #else
 // 采用自定义的stdint.h. 参考了 msinttypes: http://code.google.com/p/msinttypes/
@@ -191,14 +192,14 @@
 #endif
 
 #ifdef _INTEGRAL_MAX_BITS
-#define AUTO_STDINT_INTMAX_BIT	_INTEGRAL_MAX_BITS
+#define Z_STDINT_INTMAX_BIT	_INTEGRAL_MAX_BITS
 #elif defined(_MSC_VER)
-#define AUTO_STDINT_INTMAX_BIT	64
+#define Z_STDINT_INTMAX_BIT	64
 #else
-#define AUTO_STDINT_INTMAX_BIT	32
+#define Z_STDINT_INTMAX_BIT	32
 #endif
 
-#if (AUTO_STDINT_INTMAX_BIT >= 64)
+#if (Z_STDINT_INTMAX_BIT >= 64)
 #if defined(_MSC_VER)
 typedef signed __int64       int64_t;
 typedef unsigned __int64     uint64_t;
@@ -215,7 +216,7 @@ typedef int32_t   int_least32_t;
 typedef uint8_t   uint_least8_t;
 typedef uint16_t  uint_least16_t;
 typedef uint32_t  uint_least32_t;
-#if AUTO_STDINT_INTMAX_BIT >= 64
+#if Z_STDINT_INTMAX_BIT >= 64
 typedef int64_t   int_least64_t;
 typedef uint64_t  uint_least64_t;
 #endif
@@ -227,7 +228,7 @@ typedef int32_t   int_fast32_t;
 typedef uint8_t   uint_fast8_t;
 typedef uint16_t  uint_fast16_t;
 typedef uint32_t  uint_fast32_t;
-#if AUTO_STDINT_INTMAX_BIT >= 64
+#if Z_STDINT_INTMAX_BIT >= 64
 typedef int64_t   int_fast64_t;
 typedef uint64_t  uint_fast64_t;
 #endif
@@ -242,7 +243,7 @@ typedef uint64_t  uint_fast64_t;
 #endif // _WIN64 ]
 
 // 7.18.1.5 Greatest-width integer types
-#if AUTO_STDINT_INTMAX_BIT >= 64
+#if Z_STDINT_INTMAX_BIT >= 64
 typedef int64_t   intmax_t;
 typedef uint64_t  uintmax_t;
 #else
@@ -266,7 +267,7 @@ typedef uint32_t  uintmax_t;
 #define UINT8_MAX    _UI8_MAX
 #define UINT16_MAX   _UI16_MAX
 #define UINT32_MAX   _UI32_MAX
-#if AUTO_STDINT_INTMAX_BIT >= 64
+#if Z_STDINT_INTMAX_BIT >= 64
 #define INT64_MIN    ((int64_t)_I64_MIN)
 #define INT64_MAX    _I64_MAX
 #define UINT64_MAX   _UI64_MAX
@@ -286,7 +287,7 @@ typedef uint32_t  uintmax_t;
 #define INT32_MAX    ((int32_t)0x7FFFFFFF)
 #define UINT32_MAX   ((int32_t)0xFFFFFFFFU)
 #endif
-#if AUTO_STDINT_INTMAX_BIT >= 64
+#if Z_STDINT_INTMAX_BIT >= 64
 #define INT64_MIN    ((int64_t)0)
 #if LONG_MAX <= 0x7FFFFFFFL
 #define INT64_MAX    ((int64_t)0x7FFFFFFFFFFFFFFFLL)
@@ -308,7 +309,7 @@ typedef uint32_t  uintmax_t;
 #define UINT_LEAST8_MAX   UINT8_MAX
 #define UINT_LEAST16_MAX  UINT16_MAX
 #define UINT_LEAST32_MAX  UINT32_MAX
-#if AUTO_STDINT_INTMAX_BIT >= 64
+#if Z_STDINT_INTMAX_BIT >= 64
 #define INT_LEAST64_MIN   INT64_MIN
 #define INT_LEAST64_MAX   INT64_MAX
 #define UINT_LEAST64_MAX  UINT64_MAX
@@ -324,7 +325,7 @@ typedef uint32_t  uintmax_t;
 #define UINT_FAST8_MAX   UINT8_MAX
 #define UINT_FAST16_MAX  UINT16_MAX
 #define UINT_FAST32_MAX  UINT32_MAX
-#if AUTO_STDINT_INTMAX_BIT >= 64
+#if Z_STDINT_INTMAX_BIT >= 64
 #define INT_FAST64_MIN   INT64_MIN
 #define INT_FAST64_MAX   INT64_MAX
 #define UINT_FAST64_MAX  UINT64_MAX
@@ -342,7 +343,7 @@ typedef uint32_t  uintmax_t;
 #endif // _WIN64 ]
 
 // 7.18.2.5 Limits of greatest-width integer types
-#if AUTO_STDINT_INTMAX_BIT >= 64
+#if Z_STDINT_INTMAX_BIT >= 64
 #define INTMAX_MIN   INT64_MIN
 #define INTMAX_MAX   INT64_MAX
 #define UINTMAX_MAX  UINT64_MAX
@@ -413,7 +414,7 @@ typedef uint32_t  uintmax_t;
 #define INT32_C(val) val##L
 #define UINT32_C(val) val##UL
 #endif	// #if LONG_MAX > INT32_MAX
-#if AUTO_STDINT_INTMAX_BIT >= 64
+#if Z_STDINT_INTMAX_BIT >= 64
 #if LONG_MAX > INT32_MAX
 #define INT64_C(val) val##L
 #define UINT64_C(val) val##UL
@@ -421,11 +422,11 @@ typedef uint32_t  uintmax_t;
 #define INT64_C(val) val##LL
 #define UINT64_C(val) val##ULL
 #endif	// #if LONG_MAX > INT32_MAX
-#endif	// #if AUTO_STDINT_INTMAX_BIT >= 64
+#endif	// #if Z_STDINT_INTMAX_BIT >= 64
 #endif
 
 // 7.18.4.2 Macros for greatest-width integer constants
-#if AUTO_STDINT_INTMAX_BIT >= 64
+#if Z_STDINT_INTMAX_BIT >= 64
 #define INTMAX_C   INT64_C
 #define UINTMAX_C  UINT64_C
 #else

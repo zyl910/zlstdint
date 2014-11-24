@@ -93,7 +93,7 @@ typedef struct {
 #define PRIdFAST32   PRId32
 #define PRIiFAST32   PRIi32
 
-#if AUTO_STDINT_INTMAX_BIT >= 64
+#if Z_STDINT_INTMAX_BIT >= 64
 #if defined(_MSC_VER) && _MSC_VER>1200	// > VC6
 #define PRId64       "I64d"
 #define PRIi64       "I64i"
@@ -110,7 +110,7 @@ typedef struct {
 #define PRIiFAST64   PRIiLEAST64
 #endif
 
-#if AUTO_STDINT_INTMAX_BIT >= 64
+#if Z_STDINT_INTMAX_BIT >= 64
 #define PRIdMAX     PRId64
 #define PRIiMAX     PRIi64
 #else
@@ -178,7 +178,7 @@ typedef struct {
 #define PRIxFAST32   PRIx32
 #define PRIXFAST32   PRIX32
 
-#if AUTO_STDINT_INTMAX_BIT >= 64
+#if Z_STDINT_INTMAX_BIT >= 64
 #if defined(_MSC_VER) && _MSC_VER>1200	// > VC6
 #define PRIo64       "I64o"
 #define PRIu64       "I64u"
@@ -205,7 +205,7 @@ typedef struct {
 #define PRIXFAST64   PRIX64
 #endif
 
-#if AUTO_STDINT_INTMAX_BIT >= 64
+#if Z_STDINT_INTMAX_BIT >= 64
 #define PRIoMAX     PRIo64
 #define PRIuMAX     PRIu64
 #define PRIxMAX     PRIx64
