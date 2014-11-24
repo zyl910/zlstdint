@@ -49,6 +49,12 @@
 /// 		printf("c99int:\t%" PRIu8 ", %" PRIu16 ", %" PRIu32 ", %" PRIu64 "\n", i8, i16, i32, i64);
 /// 		return 0;
 /// 	}
+/// 
+/// ### Config Macro (配置性宏)
+///
+/// * Z_STDINT_H_USESYS: Is use compiler's `stdint.h` (是否使用的是编译器提供的 `stdint.h`) .
+/// * Z_INTTYP_H_USESYS: Is use compiler's `inttypes.h` (是否使用的是编译器提供的 `inttypes.h`) .
+///
 ///
 /// ## Documentation (文档)
 /// 
@@ -83,33 +89,40 @@
 
 ///
 /// @file	z_stdint.h
-/// @brief	Auto include C99 stdint.h (自动引用C99标准的stdint.h).
+/// @brief	Auto include C99 stdint.h (使各种编译器兼容 `stdint.h`).
 /// @since	@ref GROUP_ZLSTDINT 1.0
+///
+/// Features(特性):
+///
+/// * Auto support `stdint.h` (使各种编译器兼容 `stdint.h`).
+/// * Z_STDINT_H_USESYS: Is use compiler's `stdint.h` (是否使用的是编译器提供的 `stdint.h`) .
+///
+/// References (参考文献) :
+///
+/// * ISO/IEC 9899:1999 - Programming languages -- C (C99). ISO/IEC，1999.
 ///
 
 
 #ifndef INCLUDED_Z_STDINT_H
 #define INCLUDED_Z_STDINT_H
 
-// __AUTO_STDINT_H_USESYS: 编译器是否提供了<stdint.h>
-#undef __AUTO_STDINT_H_USESYS
+/// @def Z_STDINT_H_USESYS
+/// Is use compiler's `stdint.h` (是否使用的是编译器提供的 `stdint.h`) .
+#ifndef Z_STDINT_H_USESYS
 #if defined(__GNUC__)	// GCC.
-	#define __AUTO_STDINT_H_USESYS
-#elif defined(_MSC_VER)	// MSVC. VC6至VC2008均没有, 从VC2010才支持的.
-	#if _MSC_VER >=1600	// VC2010
-		#define __AUTO_STDINT_H_USESYS
-	#endif	// #if _MSC_VER >=1600	// VC2010
-#elif defined(__BORLANDC__)	// BCB. BCB6是支持的.
-	#if __BORLANDC__ >=0x0560	// BCB6
-		#define __AUTO_STDINT_H_USESYS
-	#endif	// #if __BORLANDC__ >=0x0560	// BCB6
+	#define Z_STDINT_H_USESYS	1
+#elif defined(_MSC_VER)&&(_MSC_VER >=1600)	// MSVC. VC6至VC2008均没有, 从VC2010才支持的.
+	#define Z_STDINT_H_USESYS	1
+#elif defined(__BORLANDC__)&&(__BORLANDC__ >=0x0560)	// BCB. BCB6是支持的.
+	#define Z_STDINT_H_USESYS	1
 #else
-	/// Is the compiler exist `<stdint.h>` (编译器是否提供了`<stdint.h>`) ?
-	#define __AUTO_STDINT_H_USESYS	// 假设其他编译器支持C99.
-#endif	// __AUTO_STDINT_H_USESYS
+	// 假定其他不支持.
+	#define Z_STDINT_H_USESYS	0
+#endif
+#endif	// #ifndef Z_STDINT_H_USESYS .
 
 
-#ifdef __AUTO_STDINT_H_USESYS
+#if Z_STDINT_H_USESYS
 // 使用编译器提供的<stdint.h>
 #include <stdint.h>
 
@@ -425,7 +438,7 @@ typedef uint32_t  uintmax_t;
 
 #endif // _MSC_STDINT_H_ ]
 
-#endif // #ifdef __AUTO_STDINT_H_USESYS
+#endif // #ifdef Z_STDINT_H_USESYS
 
 #endif // #ifndef INCLUDED_Z_STDINT_H
 

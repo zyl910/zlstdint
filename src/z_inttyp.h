@@ -8,26 +8,39 @@
 
 ///
 /// @file	z_inttyp.h
-/// @brief	Auto include C99 inttypes.h (自动引用C99标准的inttypes.h).
+/// @brief	Auto include C99 inttypes.h (使各种编译器兼容 `inttypes.h`).
 /// @since	@ref GROUP_ZLSTDINT 1.0
+///
+/// Features(特性):
+///
+/// * Auto support `inttypes.h` (使各种编译器兼容 `inttypes.h`).
+/// * Z_INTTYP_H_USESYS: Is use compiler's `inttypes.h` (是否使用的是编译器提供的 `inttypes.h`) .
+///
+/// References (参考文献) :
+///
+/// * ISO/IEC 9899:1999 - Programming languages -- C (C99). ISO/IEC，1999.
 ///
 
 #ifndef INCLUDED_Z_INTTYP_H
 #define INCLUDED_Z_INTTYP_H
 
-// __AUTO_INTTYPES_H_USESYS: 编译器是否提供了<inttypes.h>
-#undef __AUTO_INTTYPES_H_USESYS
+/// @def Z_INTTYP_H_USESYS
+/// Is use compiler's `inttypes.h` (是否使用的是编译器提供的 `inttypes.h`) .
+#ifndef Z_INTTYP_H_USESYS
 #if defined(__GNUC__)	// GCC.
-	#define __AUTO_INTTYPES_H_USESYS
+	#define Z_INTTYP_H_USESYS	1
 #elif defined(_MSC_VER)	// MSVC. VC2012仍不支持.
-#elif defined(__BORLANDC__)	// BCB. BCB6仍不支持.
+	#define Z_INTTYP_H_USESYS	0
+#elif defined(__BORLANDC__)	// BCB. BCB6~CBXE3仍不支持.
+	#define Z_INTTYP_H_USESYS	0
 #else
-	/// Is the compiler exist `<inttypes.h>` (编译器是否提供了`<inttypes.h>`) ?
-	#define __AUTO_INTTYPES_H_USESYS	// 假设其他编译器支持C99.
-#endif	// __AUTO_INTTYPES_H_USESYS
+	// 假定其他不支持.
+	#define Z_INTTYP_H_USESYS	0
+#endif
+#endif	// #ifndef Z_INTTYP_H_USESYS.
 
 
-#ifdef __AUTO_INTTYPES_H_USESYS
+#if Z_INTTYP_H_USESYS
 // 使用编译器提供的<inttypes.h>
 #include <inttypes.h>
 #else
@@ -372,7 +385,7 @@ imaxdiv_t __cdecl imaxdiv(intmax_t numer, intmax_t denom)
 
 #endif // _MSC_INTTYPES_H_ ]
 
-#endif // #ifdef __AUTO_INTTYPES_H_USESYS
+#endif // #ifdef Z_INTTYP_H_USESYS
 
 #endif // #ifndef INCLUDED_Z_INTTYP_H
 
