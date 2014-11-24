@@ -70,7 +70,7 @@
 /// ## Tested compiler (测试过的编译器)
 /// 
 /// * Virtual C++: 6, 7.1(2003), 8(2005), 9(2008), 10(2010), 11(2012), 12(2013).
-/// * C++ Builder: Turbo C++ 3, Borland C++ 3.1, C++ Builder 6.
+/// * C++ Builder: Turbo C++ 3, Borland C++ 3.1, C++ Builder 6, C++ Builder XE3.
 /// * GCC(Linux): 4.7.0~4.8.1(Fedora 17~19).
 /// * GCC(MinGW): 4.6.2(MinGW(20120426)), 4.7.1(TDM-GCC(MinGW-w64)).
 /// * LLVM GCC: 4.2(Mac OS X Lion 10.7.4), 4.2.1(Mac OS X Mountain Lion 10.8.3).
@@ -373,11 +373,12 @@ typedef uint32_t  uintmax_t;
 //#  define WCHAR_MAX  _UI16_MAX
 //#endif  // WCHAR_MAX ]
 
+#define WINT_MIN  0
 #if defined(WIN32)	// Win32 平台下的 wint_t 是16位的.
-#  define WINT_MIN  0
 #  define WINT_MAX  UINT16_MAX
+#elif defined(__TURBOC__)&&(__TURBOC__ < 0x500)	// TurboC++ 3 至 Borland C++ 3.1 均不支持 wchar.h
+#  define WINT_MAX  UINT8_MAX
 #elif defined(WCHAR_MAX)
-#  define WINT_MIN  WCHAR_MIN
 #  define WINT_MAX  WCHAR_MAX
 #else
 #endif
