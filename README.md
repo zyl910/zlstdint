@@ -73,7 +73,7 @@ You may need change INCLUDE_PATH in *.doxyfile with the actual location (您可�
 
 ## Change history (变更日志)
 
-[2015-05-17] zlstdint v1.0
+[2015-05-17] zlstdint v1.0: http://www.cnblogs.com/zyl910/p/zlstdint_v100.html
 
 * Release v1.0 (发布1.0版) .
 
