@@ -12,7 +12,7 @@
  * @author	[zyl910](mailto:zyl910hero@gmail.com)
  * @since	@ref GROUP_ZLSTDINT 1.0
  * @version	1.0
- * @date	2014-11-01
+ * @date	2015-05-17
  *
  * Links:
  *
@@ -23,7 +23,7 @@
  *
  * ## Change history (变更日志)
  *
- * [2014-11-01] v1.0
+ * [2015-05-17] v1.0
  *
  * * V1.0发布.
  *
@@ -63,6 +63,6 @@ int main(int argc, char* argv[]) {
 }
 
 
-/** @} */	// @addtogroup GROUP_ZLSTDINT_C99INTTEST
+/** @} */	// @addtogroup GROUP_ZLSTDINT_STDINTTEST
 /** @} */	// @addtogroup GROUP_ZLSTDINT
 /** @} */	// @addtogroup GROUP_ZYLLIBC

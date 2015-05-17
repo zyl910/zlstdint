@@ -1,5 +1,5 @@
 /// @addtogroup GROUP_ZYLLIBC	zyllibc
-/// [zyl910](https://github.com/zyl910/c99int)'s C/C++ librarys.
+/// [zyl910](https://github.com/zyl910/zlstdint)'s C/C++ librarys.
 /// @{
 ///
 
@@ -8,14 +8,14 @@
 ///
 /// @author	[zyl910](mailto:zyl910hero@gmail.com)
 /// @version	1.0
-/// @date	2014-11-01
+/// @date	2015-05-17
 ///
 /// Links:
 ///
 /// * Git: https://github.com/zyl910/zlstdint
 /// * Blog: http://www.cnblogs.com/zyl910/tag/zlstdint/
 ///
-/// c99int is a lightweight C library. Use for auto C99 integer type compliant (用于让VC等编译器自动兼容C99的整数类型) .
+/// zlstdint is a lightweight C library. Use for auto C99 integer type compliant (用于让VC等编译器自动兼容C99的整数类型) .
 /// 
 /// 
 /// References (参考文献) :
@@ -46,7 +46,7 @@
 /// 		uint32_t i32 = (uint32_t)INT32_C(-1);
 /// 		uint64_t i64 = (uint64_t)INT64_C(-1);
 /// 	
-/// 		printf("c99int:\t%" PRIu8 ", %" PRIu16 ", %" PRIu32 ", %" PRIu64 "\n", i8, i16, i32, i64);
+/// 		printf("zlstdint:\t%" PRIu8 ", %" PRIu16 ", %" PRIu32 ", %" PRIu64 "\n", i8, i16, i32, i64);
 /// 		return 0;
 /// 	}
 /// 
@@ -70,18 +70,33 @@
 /// ## Tested compiler (测试过的编译器)
 /// 
 /// * Virtual C++: 6, 7.1(2003), 8(2005), 9(2008), 10(2010), 11(2012), 12(2013).
-/// * C++ Builder: Turbo C++ 3, Borland C++ 3.1, C++ Builder 6, C++ Builder XE3.
-/// * GCC(Linux): 4.7.0~4.8.1(Fedora 17~19).
-/// * GCC(MinGW): 4.6.2(MinGW(20120426)), 4.7.1(TDM-GCC(MinGW-w64)).
+/// * Turbo C++: Turbo C++ 3, Borland C++ 3.1, C++ Builder 6, C++ Builder XE3 .
+/// * GCC(Linux): 4.7.0~4.8.2(Fedora 17~20), 4.6.3~4.8.2(Ubuntu 12.04~14.04).
+/// * GCC(MinGW): 4.6.2(MinGW(20120426)), 4.7.1~4.9.2(TDM-GCC(MinGW-w64)).
 /// * LLVM GCC: 4.2(Mac OS X Lion 10.7.4), 4.2.1(Mac OS X Mountain Lion 10.8.3).
 /// 
 /// 
 /// 
 /// ## Change history (变更日志)
 /// 
-/// [2014-11-01] v1.0
+/// [2015-05-17] zlstdint v1.0
 /// 
 /// * Release v1.0 (发布1.0版) .
+/// 
+/// [2013-07-30] c99int v1.2: http://www.cnblogs.com/zyl910/p/c99int_v102.html
+/// 
+/// * Upload the code to [github](https://github.com/zyl910/c99int) (将代码上传到github).
+/// * Change the directory structure (调整目录结构).
+/// * Add CMake file (添加CMake编译配置文件).
+/// * Using Doxygen style comments (使用doxygen规范注释).
+/// * Fix bug: `__AUTO_STDINT_H_USESYS` (修正 `__AUTO_STDINT_H_USESYS` 误为 `_INTTYPES_H_SYS_` 的bug).
+/// 
+/// [2013-01-10] c99int v1.1: http://www.cnblogs.com/zyl910/archive/2013/01/10/c99int_v101.html
+/// 
+/// * Files rename to "auto_stdint.h", "auto_inttypes.h" (文件改名为 "auto_stdint.h", "auto_inttypes.h").
+/// * Check compiler compliant(检测编译器兼容性): Visual C++ 9(2008), Visual C++ 11(2012).
+/// 
+/// [2012-08-08] c99int v1.0: http://www.cnblogs.com/zyl910/archive/2012/08/08/c99int.html
 /// 
 ///
 /// @{
